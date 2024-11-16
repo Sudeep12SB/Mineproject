@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        h1 {
+            color: #333;
+        }
+        .choices {
+            margin: 20px 0;
+        }
+        .choices button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .choices button:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h1>Rock, Paper, Scissors</h1>
+    <p>Choose one:</p>
+    <div class="choices">
+        <button onclick="makeChoice(1)">Rock</button>
+        <button onclick="makeChoice(2)">Paper</button>
+        <button onclick="makeChoice(3)">Scissors</button>
+    </div>
+    <p id="result"></p>
+
+    <script>
+        function makeChoice(userChoice) {
+            const choices = ["Invalid", "Rock", "Paper", "Scissors"];
+            const computerChoice = Math.floor(Math.random() * 3) + 1;
+
+            const resultElement = document.getElementById('result');
+            resultElement.innerHTML = `You chose: ${choices[userChoice]}<br>Computer chose: ${choices[computerChoice]}<br>`;
+
+            if (userChoice === computerChoice) {
+                resultElement.innerHTML += "It's a tie!";
+            } else if (
+                (userChoice === 1 && computerChoice === 3) || 
+                (userChoice === 2 && computerChoice === 1) || 
+                (userChoice === 3 && computerChoice === 2)
+            ) {
+                resultElement.innerHTML += "You win!";
+            } else {
+                resultElement.innerHTML += "Computer wins!";
+            }
+        }
+    </script>
+</body>
+</html>
